@@ -1,0 +1,39 @@
+{
+  "name": "@boogiepop/auth-sdk",
+  "version": "0.1.0",
+  "description": "Boogiepop auth/session SDK for host/remotes",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc -p tsconfig.build.json --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "boogiepop",
+    "auth",
+    "sdk"
+  ],
+  "license": "UNLICENSED"
+}
