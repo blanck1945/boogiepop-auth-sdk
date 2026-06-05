@@ -1,5 +1,5 @@
 {
-  "name": "boogiepop-auth-sdk",
+  "name": "@boogiepop/auth-sdk",
   "version": "0.1.0",
   "description": "Boogiepop auth/session SDK for host/remotes",
   "type": "module",
