@@ -95,12 +95,15 @@ export function useBoogiepopSession(options?: ResolveSessionOptions) {
   })
   const [isHydrating, setIsHydrating] = useState(true)
 
+  const optionsRef = useRef(options)
+  optionsRef.current = options
+
   useEffect(() => {
     let disposed = false
     let unsubscribe: (() => void) | null = null
 
     async function refresh() {
-      const resolved = await resolveBoogiepopSession(options)
+      const resolved = await resolveBoogiepopSession(optionsRef.current)
       if (disposed) return
       setSnapshot(resolved)
       setIsHydrating(false)
@@ -110,7 +113,7 @@ export function useBoogiepopSession(options?: ResolveSessionOptions) {
       await refresh()
       const maybeUnsub = await subscribeBoogiepopSession(
         () => { void refresh() },
-        options?.hostBridgeModuleId,
+        optionsRef.current?.hostBridgeModuleId,
       )
       if (!disposed) unsubscribe = maybeUnsub
     }
@@ -121,7 +124,14 @@ export function useBoogiepopSession(options?: ResolveSessionOptions) {
       disposed = true
       unsubscribe?.()
     }
-  }, [options])
+  }, [
+    options?.apiBaseUrl,
+    options?.devToken,
+    options?.token,
+    options?.tokenQueryParamKey,
+    options?.tokenStorageKey,
+    options?.hostBridgeModuleId,
+  ])
 
   return { snapshot, isHydrating }
 }

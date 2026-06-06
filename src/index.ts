@@ -39,6 +39,8 @@ export type BoogiepopSessionSnapshot = {
 type HostBridgeSnapshot = {
   user: BoogiepopUser | null
   workspaces?: string[]
+  /** Alias legacy del host bridge (`groups` en runtime). */
+  groups?: string[]
   roles?: BoogiepopRole[]
   abilities?: BoogiepopFunctionalAbility[]
   token: string | null
@@ -216,7 +218,7 @@ async function loadHostBridge(moduleId: string): Promise<HostBridgeModule | null
 function fromHostBridge(snapshot: HostBridgeSnapshot): BoogiepopSessionSnapshot {
   return {
     user: snapshot.user ?? null,
-    workspaces: snapshot.workspaces ?? [],
+    workspaces: snapshot.workspaces ?? snapshot.groups ?? [],
     roles: snapshot.roles ?? [],
     abilities: snapshot.abilities ?? [],
     token: snapshot.token ?? null,
