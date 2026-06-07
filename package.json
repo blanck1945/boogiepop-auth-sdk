@@ -21,7 +21,15 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "tsc -p tsconfig.build.json --noEmit"
+    "lint": "tsc -p tsconfig.build.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blanck1945/boogiepop-auth-sdk"
   },
   "peerDependencies": {
     "react": ">=18"

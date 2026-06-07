@@ -9,7 +9,7 @@ SDK de sesión/roles para ecosistema Boogiepop.
 ## Instalación
 
 ```bash
-npm install boogiepop-auth-sdk
+npm install @boogiepop/auth-sdk
 ```
 
 ## API core
@@ -19,13 +19,13 @@ import {
   resolveBoogiepopSession,
   hasRole,
   hasAnyRole,
-} from 'boogiepop-auth-sdk'
+} from '@boogiepop/auth-sdk'
 ```
 
 ## API React
 
 ```ts
-import { useBoogiepopSession } from 'boogiepop-auth-sdk/react'
+import { useBoogiepopSession } from '@boogiepop/auth-sdk/react'
 ```
 
 ## Opciones principales
