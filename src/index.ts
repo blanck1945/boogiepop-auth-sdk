@@ -118,7 +118,10 @@ export function resolveSessionFromJwt(
 ): BoogiepopSessionSnapshot {
   const resolvedToken =
     token?.trim() ??
-    (typeof window !== 'undefined' ? window.sessionStorage.getItem(storageKey)?.trim() : null) ??
+    (typeof window !== 'undefined'
+      ? window.localStorage.getItem(storageKey)?.trim() ??
+        window.sessionStorage.getItem(storageKey)?.trim()
+      : null) ??
     null
 
   if (!resolvedToken) return { ...ANONYMOUS_SESSION }
@@ -183,8 +186,10 @@ function readTokenFromBrowser(queryKey: string, storageKey: string): string | nu
   if (typeof window === 'undefined') return null
   const fromQuery = new URLSearchParams(window.location.search).get(queryKey)?.trim()
   if (fromQuery) return fromQuery
-  const fromStorage = window.sessionStorage.getItem(storageKey)?.trim()
-  return fromStorage || null
+  const fromLocal = window.localStorage.getItem(storageKey)?.trim()
+  if (fromLocal) return fromLocal
+  const fromSession = window.sessionStorage.getItem(storageKey)?.trim()
+  return fromSession || null
 }
 
 async function fetchAuthMe(

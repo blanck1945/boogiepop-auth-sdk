@@ -1,6 +1,6 @@
 {
   "name": "boogiepop-auth-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Boogiepop auth/session SDK for host/remotes",
   "type": "module",
   "main": "./dist/index.js",
